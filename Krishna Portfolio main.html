@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio website for Krishna, showcasing projects, education, achievements, and contact information.">
+    <meta name="keywords" content="Portfolio, Web Design, Projects, Krishna, Contact">
+    <title>Krishna's Portfolio</title>
+    <style>
+            * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+        }
+
+        :root {
+            --primary-color: #007ced;
+            --secondary-color: #222;
+            --text-color: #e5e5e5;
+            --background-color: #1a1a1a;
+            --card-background: #333;
+        }
+
+        body {
+            overflow-x: hidden;
+            color: var(--text-color);
+            background: var(--background-color);
+        }
+
+        .hero-header {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--background-color);
+        }
+
+        .wrapper {
+            width: 1280px;
+            max-width: 95%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 40px 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo i {
+            height: 45px;
+            width: 45px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.5rem;
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        .logo .logo-text {
+            font-size: 24px;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        nav .togglebtn {
+            width: 35px;
+            height: 35px;
+            position: absolute;
+            top: 45px;
+            right: 3%;
+            z-index: 5;
+            cursor: pointer;
+            display: none;
+        }
+
+        nav .togglebtn span {
+            display: block;
+            background-color: var(--primary-color);
+            margin: 5px 0;
+            width: 100%;
+            height: 3px;
+            transition: 0.3s;
+        }
+
+        nav .navlinks {
+            list-style-type: none;
+        }
+
+        nav .navlinks li {
+            display: inline-block;
+        }
+
+        nav .navlinks li a {
+            color: var(--text-color);
+            margin-right: 2.5rem;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        nav .navlinks li a:hover {
+            color: var(--primary-color);
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .hero-text h5 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-group {
+            margin: 45px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-group .btn {
+            color: #fff;
+            background-color: var(--primary-color);
+            padding: 12px 25px;
+            margin: 0 10px;
+            border-radius: 30px;
+            border: none;
+            box-shadow: 0 10px 10px -8px rgba(0, 0, 0, 0.78);
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-group .btn:hover {
+            background-color: #005bb5;
+            transform: scale(1.05);
+        }
+
+        .hero-text .social a {
+            color: var(--text-color);
+            font-size: 24px;
+            margin-right: 15px;
+            transition: color 0.5s, transform 0.5s;
+        }
+
+        .hero-text .social a:hover {
+            color: var(--primary-color);
+            transform: rotate(360deg);
+        }
+
+        .hero-text img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-top: 20px;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        #projects, #education, #achievements, #contact {
+            background: var(--card-background);
+        }
+
+        .project-cards, .education-cards, .achievement-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card, .education-card, .achievement-cards .card {
+            background: var(--background-color);
+            padding: 20px;
+            border-radius: 10px;
+            width: calc(33.333% - 40px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card img, .education-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .card:hover, .education-card:hover, .achievement-cards .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h3, .education-card h3, .achievement-cards .card h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .card p, .education-card p, .achievement-cards .card p {
+            font-size: 1rem;
+        }
+
+       
+        #contact {
+            background: var(--card-background);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background: var(--background-color);
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        form button {
+            padding: 12px 30px;
+            border-radius: 5px;
+            border: none;
+            background: var(--primary-color);
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        form button:hover {
+            background: #005bb5;
+            transform: scale(1.05);
+        }
+
+        @media(max-width: 930px) {
+            nav .togglebtn {
+                display: initial;
+            }
+
+            nav .navlinks {
+                position: absolute;
+                top: 110px;
+                right: -100%;
+                width: 60%;
+                height: 100vh;
+                background-color: var(--secondary-color);
+                z-index: 3;
+                box-shadow: 5px 13px 30px rgba(0, 0, 0, 0.1);
+                transition: 0.5s;
+                padding: 25px 0;
+                text-align: center;
+            }
+
+            nav .navlinks li {
+                display: block;
+                margin: 20px 0;
+            }
+
+            nav .navlinks.open {
+                right: 0;
+            }
+        }
+
+        @media(max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding-top: 2rem;
+            }
+
+            .hero-text {
+                padding: 40px 0;
+            }
+
+            .project-cards {
+                flex-direction: column;
+            }
+
+            .card {
+                width: 100%;
+            }
+            .education-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background: var(--background-color);
+    padding: 20px;
+    border-radius: 10px;
+    width: calc(50% - 20px); /* Adjust width for two cards per row */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 100%; /* Stack cards on small screens */
+    }
+}
+
+#achievements {
+    background: var(--card-background);
+    padding: 60px 0;
+}
+
+.achievement-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.achievement-cards .card {
+    background: var(--background-color);
+    padding: 20px;
+    border-radius: 10px;
+    width: calc(33.333% - 40px); /* Adjust as needed for the number of achievements per row */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.achievement-cards .card h3 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.achievement-cards .card p {
+    font-size: 1rem;
+}
+
+.achievement-cards .card:hover {
+    transform: translateY(-10px);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.navlinks {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navlinks li {
+    margin-right: 15px;
+}
+
+.navlinks li a {
+    text-decoration: none;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.navlinks li a:hover {
+    color: blue;
+}
+
+.navlinks li a.active {
+    color: blue;
+}
+
+}
+    </style>
+</head>
+<body>
+    <div class="hero-header">
+        <div class="wrapper">
+            <header>
+                <div class="logo">
+                    <i class="fas fa-user"></i>
+                    <div class="logo-text">Krishna</div>
+                </div>
+                <div class="togglebtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav>
+                    <ul class="navlinks">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#education">Education</a></li>
+                        <li><a href="#internships">Internship</a></li>
+                        <li><a href="#social-media">Social Media</a></li>
+                        <li><a href="#contact">Contact</a></li>   
+                    </ul>
+                </nav>
+            </header>
+            <div class="container">
+                <div class="hero-text">
+                    <h5>Hello Everyone, My Name is</h5>
+                    <h1>Krishna</h1>
+                    <p>And I'm a <span class="input"></span></p>
+                    <img src="Profilepic.jpg" alt="Krishna's Picture">
+                    <div class="btn-group">
+                        <button class="btn" onclick="window.open('https://drive.google.com/file/d/1jviAG0GNv7SYCllgjN_sdxUSd4PmNIy8/view?usp=drivesdk')">Download Resume</button>
+                        <button class="btn">Hire Me</button>
+                    </div>
+                    <div class="social">
+                        <p><i class="fab fa-twitter"></i> <a href="https://twitter.com/@krishna_4839">@krishna_4839</a></p>
+                        <p><i class="fab fa-instagram"></i> <a href="https://instagram.com/__iam_krishna_k">__iam_krishna_k</a></p>
+                        <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/Siva Rama Krishna P">Siva Rama Krishna P</a></p>
+                        <p><i class="fab fa-github"></i> <a href="https://github.com/krishna@9384">Krishna</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="projects">
+        <div class="wrapper">
+            <h2>Projects</h2>
+            <div class="project-cards">
+                <div class="card">
+                    <img src="https://d1krbhyfejrtpz.cloudfront.net/blog/wp-content/uploads/2022/09/07132643/Restaurant-Management-System-A-Complete-Guide.jpg" alt="Restaurant Management System">
+                    <h3>Restaurant Management System</h3>
+                    <p>Take orders online through the website. enhancing efficiency and customer service. 
+                        It provides a platform for customers to place orders conveniently </p>
+                </div>
+                <div class="card">
+                    <img src="https://images.ctfassets.net/2d5q1td6cyxq/1M4P3G73Fh6GUrwiNqWJBp/d8b3aeb0c12b8c29e759ee1d7e3d09b9/PD05460_-_mobile_USEN_nav_spotlight_services_phone.png" alt="Online Ticket Booking">
+                    <h3>Online Ticket Booking</h3>
+                    <p>Book tickets online easily through the our convinently method  and payment options.</p>
+                </div>
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeq9m02RPgMfDEjeQlqQpPk5TzyYaqj1oetg&s" alt="Shopping Management">
+                    <h3>online voting system</h3>
+                    <p>Remote online voting is online voting performed remotely. This type of voting is a form of an absentee ballot and is becoming extremely popular, 
+                        as it goes one step further than on-site voting does to increase convenience for the voters.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="education">
+        <div class="wrapper">
+            <h2>Education</h2>
+            <div class="education-cards">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE0wThjvotruHckaBcwwIuWqobO6mugKeCRUWCCTGzxIeaCXSPjlREV5RrcCfbx_C8hmE&usqp=CAU" alt="Nehru Nikethan High School">
+                    <h3>Nehru Nikethan High School</h3>
+                    <p>Till 2020 <u>SSC = 92%</u></p>
+                </div>
+                <div class="card">
+                    <img src="https://i.ytimg.com/vi/OTPBb3rglzI/maxresdefault.jpg" alt="Sri Mahita College">
+                    <h3>Sri Mahita College</h3>
+                    <p>Till 2022 <u>Inter = 82%</u></p>
+                </div>
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5BJsP2TlHoCIl--yUpoV0qlTZv5-yeZr4Iw&s" alt="SRM University AP">
+                    <h3>SRM AP</h3>
+                    <p>B.Tech 2026 <u>CGPA - 7.256</u></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="internships">
+        <div class="wrapper">
+            <h2>Internships</h2>
+            <div class="achievement-cards">
+                <div class="card">
+                    <h3>K4 Media & Technologies</h3>
+                    <img src="k4.jpeg" alt="K4 M & T">
+                    <p>Proudly completing my internship journey at K4 Media & Technologies</p>
+                </div>
+                <div class="card">
+                    <h3>Walmart Internships</h3>
+                    <img src="walmart.jpeg" alt="Walmart">
+                    <p>Thrilled to have successfully concluded my internship and deli and<br>
+                    dairy products with electronics, apparel, toys and home furnishings.with Walmart Company! 🛒🌟</p>
+                </div>
+                <div class="card">
+                    <h3>TCS Communication Skills</h3>
+                    <img src="TCS.png" alt="TCS">
+                    <p>I have improved my communication skills and language skills through TCS and I am very grateful to be part in TCS Communication Skills.</p>
+                </div>
+                <div class="card">
+                    <h3>Guvi AI Internships</h3>
+                    <img src="https://media.licdn.com/dms/image/D5612AQGqKSEQgM223A/article-cover_image-shrink_600_2000/0/1672586533661?e=2147483647&v=beta&t=QT91BFIs_yubARE9t3BJXSFoAO1pG51nt6rXDo6SbQ0" alt="Guvi AI">
+                    <p>AI India 2.0 has successfully completed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="social-media">
+        <div class="wrapper">
+            <h2>Social Media</h2>
+            <div class="achievement-cards">
+                <div class="card">
+                    <h3>LinkedIn</h3>
+                    <img src="linkedin.png" alt="LinkedIn">
+                    <p>Connect with me on LinkedIn.</p>
+                </div>
+                <div class="card">
+                    <h3>Twitter</h3>
+                    <img src="X.wi.webp" alt="Twitter">
+                    <p>Connect with me on Twitter.</p>
+                </div>
+                <div class="card">
+                    <h3>Facebook</h3>
+                    <img src="facebook.jpg" alt="Facebook">
+                    <p>Connect with me on Facebook.</p>
+                </div>
+                <div class="card">
+                    <h3>GitHub</h3>
+                    <img src="github.png" alt="GitHub">
+                    <p>Check out my projects on GitHub.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <div class="wrapper">
+            <h2>Contact</h2>
+            <form>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn">Send</button>
+            </form>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var togglebtn = document.querySelector(".togglebtn");
+            var nav = document.querySelector(".navlinks");
+
+            togglebtn.addEventListener("click", function () {
+                this.classList.toggle("click");
+                nav.classList.toggle("open");
+            });
+
+            var typed = new Typed(".input", {
+                strings: ["Web Developer", "Designer", "Freelancer"],
+                typeSpeed: 70,
+                backSpeed: 55,
+                loop: true
+            });
+
+            const sections = document.querySelectorAll("section[id]");
+            const navLinks = document.querySelectorAll(".navlinks li a");
+
+            window.addEventListener("scroll", () => {
+                let current = "";
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                        current = section.getAttribute("id");
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href").includes(current)) {
+                        link.classList.add("active");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
